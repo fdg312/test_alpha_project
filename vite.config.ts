@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+	base: '/test_alpha_project',
 	plugins: [react()],
 	resolve: {
 		alias: {
