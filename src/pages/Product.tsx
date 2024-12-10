@@ -9,18 +9,25 @@ const Product = () => {
 
 	const handleFavorite = async (e: React.MouseEvent) => {
 		e.preventDefault()
-		await fetch(`http://localhost:3000/api/products/${product?.id}/favorite`, {
-			method: 'PATCH',
-			body: JSON.stringify({ isFavorite: !product?.isFavorite }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
+		await fetch(
+			`${import.meta.env.VITE_BACKEND_URL}/api/products/${
+				product?.id
+			}/favorite`,
+			{
+				method: 'PATCH',
+				body: JSON.stringify({ isFavorite: !product?.isFavorite }),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		)
 		fetchProduct()
 	}
 
 	const fetchProduct = async () => {
-		const res = await fetch(`http://localhost:3000/api/products/${id}`)
+		const res = await fetch(
+			`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`
+		)
 		const data = await res.json()
 		console.log(data.isFavorite)
 		setProduct(data)

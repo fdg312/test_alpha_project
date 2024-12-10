@@ -10,13 +10,16 @@ const ProductCard = ({
 }) => {
 	const handleFavorite = async (e: React.MouseEvent) => {
 		e.preventDefault()
-		await fetch(`http://localhost:3000/api/products/${product.id}/favorite`, {
-			method: 'PATCH',
-			body: JSON.stringify({ isFavorite: !product.isFavorite }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
+		await fetch(
+			`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.id}/favorite`,
+			{
+				method: 'PATCH',
+				body: JSON.stringify({ isFavorite: !product.isFavorite }),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		)
 		fetchProducts()
 	}
 

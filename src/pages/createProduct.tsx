@@ -24,7 +24,7 @@ const CreateProduct = () => {
 	})
 
 	const fetchData = async (data: Partial<productType>) => {
-		fetch('http://localhost:3000/api/products', {
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: {
