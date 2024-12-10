@@ -6,7 +6,7 @@ import CreateProduct from './pages/createProduct.tsx'
 import Product from './pages/Product.tsx'
 
 createRoot(document.getElementById('root')!).render(
-	<BrowserRouter basename='/test_alpha_project'>
+	<BrowserRouter basename='/test_alpha_project/'>
 		<Routes>
 			<Route path='/' element={<Navigate to='/products' replace />} />
 			<Route path='/products' element={<App />} />
