@@ -20,7 +20,6 @@ function App() {
 			<h1 className='text-2xl font-bold mt-4 mb-4'>Products</h1>
 			<div className='sort-btns flex gap-2 mb-4'>
 				<Button
-					disabled={sortBy === ''}
 					className={
 						sortBy === 'price'
 							? 'bg-green-500 hover:bg-green-600'
@@ -31,7 +30,6 @@ function App() {
 					Sort by price
 				</Button>
 				<Button
-					disabled={sortBy === ''}
 					className={
 						sortBy === 'quantity'
 							? 'bg-green-500 hover:bg-green-600'
