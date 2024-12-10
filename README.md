@@ -1,118 +1,65 @@
-# 🛍️ Product Management System
+# Product Management System
 
-A modern web application built with React, TypeScript, and Vite for efficient product management.
+A web application for managing products built with React, TypeScript, and Vite.
 
-## ✨ Features
+🔗 [Live Demo](https://fdg312.github.io/test_alpha_project/products)
 
-- 📱 Responsive product catalog display
-- ➕ Create and manage products
-- 🖼️ Image upload functionality
-- 🎨 Beautiful UI with Tailwind CSS
-- 🔍 Type-safe development with TypeScript
+## Features
 
-## 🚀 Tech Stack
+- Product catalog display
+- Create and manage products
+- Image upload functionality
+- Modern UI with Tailwind CSS
 
-- **Frontend Framework:** React 18
-- **Build Tool:** Vite
-- **Styling:** Tailwind CSS
-- **Type Safety:** TypeScript
-- **Form Handling:** React Hook Form
-- **State Management:** Custom store implementation
-- **UI Components:** Shadcn/ui
+## Tech Stack
 
-## 🛠️ Getting Started
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Hook Form
+- Shadcn/ui components
+- Zustand
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v16+)
 - npm or yarn
 
-### Installation
+### Quick Start
 
-1. Clone the repository:
-
-```bash
-git clone <your-repo-url>
-cd frontend
-```
-
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. Start the development server:
+2. Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-The application will be available at `http://localhost:5173`
+Visit `http://localhost:5173` in your browser.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-frontend/
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── pages/         # Page components
-│   ├── lib/           # Utility functions
-│   ├── store/         # State management
-│   └── schema/        # TypeScript schemas
-├── public/            # Static assets
-└── ...config files
+src/
+├── components/     # UI components
+├── pages/         # Page components
+├── lib/           # Utilities
+└── store/         # State management
 ```
 
-## 🔧 Configuration
+## Available Scripts
 
-The project includes several configuration files:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run linter
+- `npm run typecheck` - Check types
 
-- `tsconfig.json` - TypeScript configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `vite.config.ts` - Vite configuration
+## License
 
-## 🧪 Development
-
-### Type Checking
-
-The project uses TypeScript for type safety. Run type checking with:
-
-```bash
-npm run typecheck
-# or
-yarn typecheck
-```
-
-### Linting
-
-To maintain code quality, run:
-
-```bash
-npm run lint
-# or
-yarn lint
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Shadcn/ui](https://ui.shadcn.com/)
+MIT License
