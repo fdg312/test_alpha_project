@@ -8,6 +8,7 @@ export const productSchema = z.object({
 	description: z.string().min(1, 'Description is required'),
 	file: z.any(),
 	srcImg: z.string().optional(),
+	isFavorite: z.boolean().optional(),
 })
 
 export type productType = z.infer<typeof productSchema>
