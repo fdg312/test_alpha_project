@@ -21,37 +21,53 @@ const CreateProduct = () => {
 		formState: { errors },
 	} = useForm<productType>({
 		resolver: zodResolver(productSchema),
+		defaultValues: {
+			name: '',
+			price: 0,
+			quantity: 0,
+			description: '',
+			file: null,
+		},
 	})
 
 	const fetchData = async (data: Partial<productType>) => {
-		fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			credentials: 'include',
-		})
-			.then(res => res.json())
-			.catch(error => console.error(error))
+		const response = await fetch(
+			`${import.meta.env.VITE_BACKEND_URL}/api/products`,
+			{
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+			}
+		)
+
+		if (!response.ok) {
+			throw new Error('Failed to create product')
+		}
+
+		return response.json()
 	}
 
 	const onSubmit = async (data: Omit<productType, 'srcImg'>) => {
-		console.log(data)
-
 		try {
 			setIsLoading(true)
-			const file = data.file[0]
-			const uploadResponse = await client.upload(file)
-			console.log(uploadResponse)
 
-			await fetchData({
-				...data,
+			const uploadResponse = await client.upload(data.file[0])
+
+			const productData = {
+				name: data.name,
+				price: data.price,
+				quantity: data.quantity,
+				description: data.description,
 				srcImg: uploadResponse.url,
-			})
+			}
+
+			await fetchData(productData)
 			navigate('/products')
 		} catch (error) {
-			console.error('Error:', error)
+			console.log(error)
 		} finally {
 			setIsLoading(false)
 		}
@@ -85,7 +101,6 @@ const CreateProduct = () => {
 				<div>
 					<Label htmlFor='quantity'>Quantity</Label>
 					<Input
-						required
 						id='quantity'
 						type='number'
 						{...register('quantity', { valueAsNumber: true })}
@@ -96,7 +111,7 @@ const CreateProduct = () => {
 				</div>
 				<div>
 					<Label htmlFor='description'>Description</Label>
-					<Input required id='description' {...register('description')} />
+					<Input id='description' {...register('description')} />
 					{errors.description && (
 						<span className='text-red-500'>{errors.description.message}</span>
 					)}

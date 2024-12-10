@@ -53,6 +53,7 @@ export const useProductStore = create<IProductStore>()(
 				if (get().product) {
 					set({ product: await response.json() })
 				}
+				get().fetchProducts()
 			},
 			sortBy: '',
 			setSortBy: (sortBy: string) => {

@@ -15,7 +15,11 @@ const ProductCard = ({ product }: { product: productType }) => {
 			<p className='text-sm text-gray-500'>Price: {product.price}</p>
 			<p className='text-sm text-gray-500'>Quantity: {product.quantity}</p>
 			<Heart
-				onClick={() => toggleFavorite(product.id, !product.isFavorite)}
+				onClick={e => {
+					e.preventDefault()
+					e.stopPropagation()
+					toggleFavorite(product.id!, !product.isFavorite)
+				}}
 				className={
 					'w-8 h-8 absolute top-2 right-2 ' +
 					(product.isFavorite ? 'text-red-500' : 'text-gray-500')

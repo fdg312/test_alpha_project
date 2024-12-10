@@ -1,34 +1,20 @@
-import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
-import { productType } from '@/schema'
-import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
+import { productType } from '../schema'
 
 interface ImageUploaderProps {
 	register: UseFormRegister<productType>
-	error?: boolean
-	isLoading?: boolean
+	error: boolean
 }
 
-export const ImageUploader: React.FC<ImageUploaderProps> = ({
-	register,
-	error,
-	isLoading,
-}: ImageUploaderProps) => {
+export const ImageUploader = ({ register, error }: ImageUploaderProps) => {
 	return (
-		<Input
-			required
-			id='file-upload'
+		<input
 			type='file'
-			{...register('file', {
-				onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-					const file = e.target.files?.[0]
-					if (!file) return
-				},
-			})}
-			className={cn(error && 'border-red-500', 'cursor-pointer')}
 			accept='image/*'
-			disabled={isLoading}
+			className={`block cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold hover:file:bg-violet-100 ${
+				error ? 'border-red-500' : ''
+			}`}
+			{...register('file', { required: 'Image is required' })}
 		/>
 	)
 }

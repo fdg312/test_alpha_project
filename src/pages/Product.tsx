@@ -7,8 +7,7 @@ const Product = () => {
 	const { id } = useParams<{ id: string }>()
 	const { toggleFavorite, fetchProduct, product } = useProductStore()
 
-	const handleFavorite = async (e: React.MouseEvent) => {
-		e.preventDefault()
+	const handleFavorite = async () => {
 		if (!product?.id) return
 		toggleFavorite(product.id, !product.isFavorite)
 	}
@@ -33,7 +32,11 @@ const Product = () => {
 								'w-8 h-8 absolute top-2 right-2 cursor-pointer ' +
 								(product?.isFavorite ? 'text-red-500' : 'text-gray-500')
 							}
-							onClick={handleFavorite}
+							onClick={e => {
+								e.preventDefault()
+								e.stopPropagation()
+								handleFavorite()
+							}}
 						/>
 					</div>
 					<div className='p-8 md:w-1/2'>
