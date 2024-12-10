@@ -53,13 +53,6 @@ src/
 └── store/         # State management
 ```
 
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run linter
-- `npm run typecheck` - Check types
-
 ## License
 
 MIT License
