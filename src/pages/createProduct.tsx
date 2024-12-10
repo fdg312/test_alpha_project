@@ -37,10 +37,14 @@ const CreateProduct = () => {
 	}
 
 	const onSubmit = async (data: Omit<productType, 'srcImg'>) => {
+		console.log(data)
+
 		try {
 			setIsLoading(true)
 			const file = data.file[0]
 			const uploadResponse = await client.upload(file)
+			console.log(uploadResponse)
+
 			await fetchData({
 				...data,
 				srcImg: uploadResponse.url,

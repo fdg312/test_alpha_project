@@ -1,40 +1,21 @@
-import { productType } from '@/schema'
+import { useProductStore } from '@/store'
 import { Heart } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router'
 
 const Product = () => {
 	const { id } = useParams<{ id: string }>()
-	const [product, setProduct] = useState<Required<productType> | null>(null)
+	const { toggleFavorite, fetchProduct, product } = useProductStore()
 
 	const handleFavorite = async (e: React.MouseEvent) => {
 		e.preventDefault()
-		await fetch(
-			`${import.meta.env.VITE_BACKEND_URL}/api/products/${
-				product?.id
-			}/favorite`,
-			{
-				method: 'PATCH',
-				body: JSON.stringify({ isFavorite: !product?.isFavorite }),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		)
-		fetchProduct()
-	}
-
-	const fetchProduct = async () => {
-		const res = await fetch(
-			`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`
-		)
-		const data = await res.json()
-		console.log(data.isFavorite)
-		setProduct(data)
+		if (!product?.id) return
+		toggleFavorite(product.id, !product.isFavorite)
 	}
 
 	useEffect(() => {
-		fetchProduct()
+		if (!id) return
+		fetchProduct(id)
 	}, [id])
 
 	return (

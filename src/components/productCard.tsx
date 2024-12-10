@@ -1,27 +1,11 @@
 import { productType } from '@/schema'
+import { useProductStore } from '@/store'
 import { Heart } from 'lucide-react'
 
-const ProductCard = ({
-	product,
-	fetchProducts,
-}: {
-	product: productType
-	fetchProducts: () => void
-}) => {
-	const handleFavorite = async (e: React.MouseEvent) => {
-		e.preventDefault()
-		await fetch(
-			`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.id}/favorite`,
-			{
-				method: 'PATCH',
-				body: JSON.stringify({ isFavorite: !product.isFavorite }),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		)
-		fetchProducts()
-	}
+const ProductCard = ({ product }: { product: productType }) => {
+	const { toggleFavorite } = useProductStore()
+
+	if (!product.id) return null
 
 	return (
 		<div className='border p-4 rounded-md max-w-sm flex flex-col gap-2 relative'>
@@ -31,7 +15,7 @@ const ProductCard = ({
 			<p className='text-sm text-gray-500'>Price: {product.price}</p>
 			<p className='text-sm text-gray-500'>Quantity: {product.quantity}</p>
 			<Heart
-				onClick={handleFavorite}
+				onClick={() => toggleFavorite(product.id, !product.isFavorite)}
 				className={
 					'w-8 h-8 absolute top-2 right-2 ' +
 					(product.isFavorite ? 'text-red-500' : 'text-gray-500')
